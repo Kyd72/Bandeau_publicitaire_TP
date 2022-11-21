@@ -6,24 +6,24 @@ import java.util.Map;
 
 public class Scenario {
 
-    private HashMap<Effet, Integer > listeEffets = new HashMap<Effet, Integer>();
+    private ArrayList<EffetRepetition> listeEffets = new ArrayList<EffetRepetition>();
 
     public Scenario () {    };
 
     public void ajouterEffet (Effet effet, int nombreDeRepetition) {
-        listeEffets.put(effet, nombreDeRepetition);
+        listeEffets.add(new EffetRepetition(effet, nombreDeRepetition)) ;
     }
 
 
 
     public void deroulerAnimation(Bandeau bandeau){
 
-        for (Map.Entry<Effet, Integer> entry : listeEffets.entrySet()) {
+        for (EffetRepetition effetRepetition : listeEffets) {
 
-            for(int i=0; i<entry.getValue(); i++)
+            for(int i=0; i<effetRepetition.getRepetition(); i++)
 
             {
-            entry.getKey().animerBandeau(bandeau);
+            effetRepetition.getEffet().animerBandeau(bandeau);
                 bandeau.sleep(500);
             }
             bandeau.sleep(500);
